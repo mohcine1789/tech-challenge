@@ -1,0 +1,6 @@
+{
+    "view": "https://api.demoblaze.com/view",
+    "deleteitem": "https://api.demoblaze.com/deleteitem",
+    "addtocart": "https://api.demoblaze.com/addtocart",
+    "deletecart": "https://api.demoblaze.com/deletecart"
+}
