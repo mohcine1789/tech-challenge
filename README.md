@@ -3,7 +3,8 @@ E2E tests challenge
 
 ## The test scenario : 
 
-The focus is on the purchase flow after loging in. 
+In this scenario we are covering the whole flow from login to a successful purchase of a laptop.
+The tests are designed to check not only the user interface but also the Http API calls to make sure that we covering both ends of the application.
 
 Pre-conditions:
 
@@ -12,27 +13,36 @@ Pre-conditions:
 
 Scenario :
 
-(action => expected result)
-
-1. Log in with correct credentials => successful login and the username is displayed in the header
-2. Go to Laptops categorie => laptops are listed
-3. Select a laptop => product descrption page is opened 
-4. Click on add to cart button => alert window is shown and displying Product added
-                               => the endpoint "POST https://api.demoblaze.com/addtocart" is returning 200
-
-5. Go to Cart page => the selected item is shown
-6. Click on place order button => a user data form is rendered to fill out
-7. Fill out all the fields of the form => all the fields are properly filled
-8. Click on Purchase button => modal window is displayed showing the message : Thank you for your purchase
-                            => the cart should be empty 
-                            => the endpoint "POST https://api.demoblaze.com/deletecart" is returning 200
-
+| Step  | expected result |
+| ------------- | ------------- |
+|  Log in with correct credentials  | successful login and the username is displayed in the header  |
+| Navigate to Laptops categorie  | laptops are listed  |
+| Select a laptop  | product descrption page is opened   |
+| Click on add to cart button  | 1. alert window is shown and displying Product added |
+|   | 2. the endpoint "POST https://api.demoblaze.com/addtocart" returns 200  |
+| Navigate to Cart page  | the selected Laptop figures in the cart list  |
+|  Click on place order button  | a user's data form is rendered to fill out  |
+| Fill out all the fields of the form  | all the fields are properly filled  |
+| Click on Purchase button | 1. modal window is displayed showing the message : Thank you for your purchase  |
+|   |  2. the cart should be empty |
+|   |  3. the endpoint "POST https://api.demoblaze.com/deletecart" is returning 200 |
+   
 
 ## Automation tools
-- Cypress
+- [Cypress](https://docs.cypress.io/app/get-started/why-cypress)
 - Typescript
+- NodeJs
 
-For a better readibility and usibility, I used the Page Object Model (POM) where each page is represented by a class. In each class we have all respective DOM elements and actions.
+## Structure of the framework 
+
+The project follows the page object pattern where each page is represented by a class (e.g HomePage). This approach enhances the readability and the usability of the tests.
+
+```
+ |- e2e # tests scritps
+ |- fixtures # test data
+ |- pages # application's pages
+ |- support # cypress commands
+```
 
 ## How to run tests
 
@@ -40,20 +50,26 @@ For a better readibility and usibility, I used the Page Object Model (POM) where
 
 #### Set up
 
-Install the dependencies using [NPM](https://www.npmjs.com/)
+1. clone the repo
 
-```bash
-npm install
-```
+   ```
+   git clone https://github.com/mohcine1789/tech-challenge
+   
+   ```
+2. move to cloned repo
+3. install project dependencies using [NPM](https://www.npmjs.com/)
+   ```
+   npm i
+   ```
+   
 There are two options to run tests locally:
 
-1. Open Cypress 
+- Open Cypress 
 
 ```bash
 npm run cy:open
 ```
-
-3. Headless
+ - Headless
 
 ```bash
 npm run cy:run
